@@ -1,6 +1,5 @@
 import { questionsData } from "./questions.js";
 
-// Функция перемешивания массива
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -14,7 +13,6 @@ let score = 0;
 const quizDiv = document.getElementById("quiz");
 
 function initQuiz() {
-  // Копируем и перемешиваем вопросы
   questions = JSON.parse(JSON.stringify(questionsData));
   shuffle(questions);
   currentQuestion = 0;
@@ -26,11 +24,14 @@ function showQuestion(idx) {
   quizDiv.innerHTML = "";
   const q = questions[idx];
 
+  // Прогресс
+  const progressDiv = document.getElementById("progress");
+  progressDiv.innerText = `Вопрос ${idx + 1} из ${questions.length}`;
+
   const qDiv = document.createElement("div");
   qDiv.className = "question";
-  qDiv.innerHTML = `<p><b>${idx + 1}. ${q.text}</b></p>`;
+  qDiv.innerHTML = `<p><b>${q.text}</b></p>`;
 
-  // Перемешиваем варианты
   const optionsWithIndex = q.options.map((opt, i) => ({ text: opt, index: i }));
   shuffle(optionsWithIndex);
 
@@ -59,14 +60,13 @@ function checkAnswer(qIdx, choiceIdx) {
     score++;
   } else {
     feedback.style.color = "red";
-    feedback.innerText = `Неверно! Правильный ответ: ${q.options[q.answer]}`;
+    feedback.innerText = `Неверно! Правильный ответ: 
+    ${q.options[q.answer]}`;
   }
 
-  // Отключаем кнопки
   const buttons = document.querySelectorAll("button");
   buttons.forEach(b => b.disabled = true);
 
-  // Кнопка "Далее"
   const nextBtn = document.createElement("button");
   nextBtn.innerText = "Далее";
   nextBtn.onclick = () => {
@@ -85,5 +85,4 @@ function checkAnswer(qIdx, choiceIdx) {
   quizDiv.appendChild(nextBtn);
 }
 
-// Запуск теста
 initQuiz();
