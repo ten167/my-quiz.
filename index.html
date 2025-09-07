@@ -2,20 +2,84 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Мой тест</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; }
-    .question { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 10px; }
-    button { padding: 10px 20px; border: none; border-radius: 8px; background: #4caf50; color: white; cursor: pointer; margin: 5px 0; }
-    button:hover:not(:disabled) { background: #45a049; }
-    .feedback { margin-top: 10px; font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    #progress {
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover:not(:disabled) {
+      background: #45a049;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* 📱 Адаптив для смартфонов */
+    @media (max-width: 600px) {
+      body {
+        margin: 10px;
+        padding: 5px;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      #progress {
+        font-size: 1rem;
+      }
+      button {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+      .question {
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>Тест (случайные вопросы)</h2>
+  <h2>ФУҚАРОЛИК КОДЕКСИДАН ТЕСТ САВОЛЛАРИ (1-9)</h2>
+  <div id="progress"></div>
   <div id="quiz"></div>
 
-  <!-- Подключаем файл с вопросами -->
   <script type="module" src="main.js"></script>
 </body>
 </html>
